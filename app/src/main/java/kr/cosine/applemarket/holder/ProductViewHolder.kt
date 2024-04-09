@@ -22,6 +22,8 @@ class ProductViewHolder private constructor(
     val likeTextView = binding.likeTextView
 
     companion object {
-        fun from(binding: ItemProductBinding): ProductViewHolder = ProductViewHolder(binding)
+        fun from(binding: ItemProductBinding): ProductViewHolder {
+            return ProductViewHolder(binding)
+        }
     }
 }

@@ -11,7 +11,8 @@ import kr.cosine.applemarket.extension.applyComma
 import kr.cosine.applemarket.holder.ProductViewHolder
 
 class ProductAdapter(
-    private val products: List<Product>
+    private val products: List<Product>,
+    private val clickScope: () -> Unit
 ) : RecyclerView.Adapter<ProductViewHolder>() {
 
     private lateinit var parrentContext: Context
@@ -20,6 +21,9 @@ class ProductAdapter(
         parrentContext = parent.context
         val layoutInflater = LayoutInflater.from(parrentContext)
         val binding = ItemProductBinding.inflate(layoutInflater, parent, false)
+        binding.root.setOnClickListener {
+            clickScope()
+        }
         return ProductViewHolder.from(binding)
     }
 

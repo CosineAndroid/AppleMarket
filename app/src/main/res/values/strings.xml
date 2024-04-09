@@ -2,4 +2,10 @@
     <string name="app_name">AppleMarket</string>
     <string name="current_address">홍길동</string>
     <string name="price_format">%s원</string>
+    <string name="exit_title">종료</string>
+    <string name="exit_description">정말 종료하시겠습니까?</string>
+    <string name="exit_cancel">취소</string>
+    <string name="exit_confirm">확인</string>
+    <string name="notification_title">키워드 알림</string>
+    <string name="notification_description">설정한 키워드에 대한 알림이 도착했습니다!!</string>
 </resources>
