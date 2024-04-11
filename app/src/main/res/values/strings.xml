@@ -8,4 +8,13 @@
     <string name="exit_confirm">확인</string>
     <string name="notification_title">키워드 알림</string>
     <string name="notification_description">설정한 키워드에 대한 알림이 도착했습니다!!</string>
+    <string name="manner_temperature">40.0 ℃</string>
+    <string name="manner_temperature_title"><u>매너온도</u></string>
+    <string name="temporary_address">지역</string>
+    <string name="temporary_title">제목</string>
+    <string name="temporary_count">0</string>
+    <string name="temporary_description">설명</string>
+    <string name="temporary_name">이름</string>
+    <string name="chat_button_title">채팅하기</string>
+    <string name="like_message">관심 목록에 추가되었습니다.</string>
 </resources>

@@ -1,6 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/pageScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/likeImageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/pageConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/productImageView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/none_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productImageView" />
+
+            <TextView
+                android:id="@+id/seller_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="2dp"
+                android:text="@string/temporary_name"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/profileImageView"
+                app:layout_constraintTop_toTopOf="@+id/profileImageView" />
+
+            <TextView
+                android:id="@+id/addressTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/temporary_address"
+                android:textColor="#555555"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/seller_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/seller_text_view" />
+
+            <TextView
+                android:id="@+id/temperatureTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/manner_temperature"
+                android:textColor="#0E9C9C"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/temperatureImageView"
+                app:layout_constraintEnd_toStartOf="@+id/temperatureImageView"
+                app:layout_constraintTop_toTopOf="@+id/temperatureImageView" />
+
+            <ImageView
+                android:id="@+id/temperatureImageView"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productImageView"
+                app:srcCompat="@drawable/face" />
+
+            <TextView
+                android:id="@+id/temperatureTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/manner_temperature_title"
+                android:textColor="#A5A5A5"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="@+id/temperatureImageView"
+                app:layout_constraintTop_toBottomOf="@+id/temperatureImageView" />
+
+            <View
+                android:id="@+id/horizontalLine"
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:layout_marginTop="16dp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/temporary_title"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalLine" />
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/temporary_description"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ImageButton
+        android:id="@+id/likeImageButton"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:background="@android:color/transparent"
+        android:onClick="switchLike"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/empty_like" />
+
+    <View
+        android:id="@+id/verticalLine"
+        android:layout_width="2px"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toBottomOf="@+id/likeImageButton"
+        app:layout_constraintStart_toEndOf="@+id/likeImageButton"
+        app:layout_constraintTop_toTopOf="@+id/likeImageButton" />
+
+    <TextView
+        android:id="@+id/priceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/price_format"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/verticalLine"
+        app:layout_constraintStart_toEndOf="@+id/verticalLine"
+        app:layout_constraintTop_toTopOf="@+id/verticalLine" />
+
+    <Button
+        android:id="@+id/chatButton"
+        android:layout_width="92dp"
+        android:layout_height="33dp"
+        android:background="@drawable/chat_button_background"
+        android:stateListAnimator="@null"
+        android:text="@string/chat_button_title"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/priceTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.926"
+        app:layout_constraintStart_toEndOf="@+id/priceTextView"
+        app:layout_constraintTop_toTopOf="@+id/priceTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

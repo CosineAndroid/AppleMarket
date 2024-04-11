@@ -8,11 +8,12 @@ import kr.cosine.applemarket.R
 import kr.cosine.applemarket.data.Product
 import kr.cosine.applemarket.databinding.ItemProductBinding
 import kr.cosine.applemarket.extension.applyComma
+import kr.cosine.applemarket.extension.getFormattedPrice
 import kr.cosine.applemarket.holder.ProductViewHolder
 
 class ProductAdapter(
     private val products: List<Product>,
-    private val clickScope: () -> Unit
+    private val clickScope: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductViewHolder>() {
 
     private lateinit var parrentContext: Context
@@ -21,10 +22,7 @@ class ProductAdapter(
         parrentContext = parent.context
         val layoutInflater = LayoutInflater.from(parrentContext)
         val binding = ItemProductBinding.inflate(layoutInflater, parent, false)
-        binding.root.setOnClickListener {
-            clickScope()
-        }
-        return ProductViewHolder.from(binding)
+        return ProductViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) = with(holder) {
@@ -32,9 +30,12 @@ class ProductAdapter(
         previewImageView.setImageResource(product.imageDrawableId)
         titleTextView.text = product.title
         addressTextView.text = product.address
-        priceTextView.text = parrentContext.getString(R.string.price_format, product.price.applyComma())
+        priceTextView.text = parrentContext.getFormattedPrice(product.price)
         chatTextView.text = product.chatCount.applyComma()
         likeTextView.text = product.likeCount.applyComma() // 하트 빨간색
+        holder.itemView.setOnClickListener {
+            clickScope(product)
+        }
     }
 
     override fun getItemId(position: Int): Long = position.toLong()

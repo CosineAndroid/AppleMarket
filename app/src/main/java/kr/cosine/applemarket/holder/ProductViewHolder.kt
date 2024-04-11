@@ -3,7 +3,7 @@ package kr.cosine.applemarket.holder
 import androidx.recyclerview.widget.RecyclerView
 import kr.cosine.applemarket.databinding.ItemProductBinding
 
-class ProductViewHolder private constructor(
+class ProductViewHolder(
     binding: ItemProductBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -20,10 +20,4 @@ class ProductViewHolder private constructor(
     val likeImageView = binding.likeImageView
 
     val likeTextView = binding.likeTextView
-
-    companion object {
-        fun from(binding: ItemProductBinding): ProductViewHolder {
-            return ProductViewHolder(binding)
-        }
-    }
 }

@@ -2,18 +2,21 @@ package kr.cosine.applemarket
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Intent
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kr.cosine.applemarket.adapter.ProductAdapter
+import kr.cosine.applemarket.data.IntentKey
+import kr.cosine.applemarket.data.Product
 import kr.cosine.applemarket.databinding.ActivityMainBinding
 import kr.cosine.applemarket.registry.ProductRegistry
 
@@ -81,10 +84,14 @@ class MainActivity : AppCompatActivity() {
     private fun initRecyclerView() = with(binding.productRecyclerView) {
         val dividerItemDecoration = DividerItemDecoration(this@MainActivity, LinearLayout.VERTICAL)
         addItemDecoration(dividerItemDecoration)
-        adapter = ProductAdapter(productRegistry.products) {
-
-        }
+        adapter = ProductAdapter(productRegistry.products, ::startProductActivity)
         layoutManager = LinearLayoutManager(this@MainActivity)
+    }
+
+    private fun startProductActivity(product: Product) {
+        val intent = Intent(this, ProductActivity::class.java)
+        intent.putExtra(IntentKey.PRODUCT, product)
+        startActivity(intent)
     }
 
     private fun showNotification() {

@@ -6,42 +6,48 @@
     android:layout_height="140dp"
     android:background="@color/white">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/previewImageView"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/previewCardView"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginStart="16dp"
-        android:background="@drawable/background_radius_16dp"
-        android:clipToOutline="true"
-        android:scaleType="centerCrop"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/previewImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_radius_8dp"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="제목"
+        android:text="@string/temporary_title"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/previewImageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/previewCardView"
+        app:layout_constraintTop_toTopOf="@+id/previewCardView" />
 
     <TextView
         android:id="@+id/address_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="지역"
+        android:text="@string/temporary_address"
         android:textSize="16sp"
         android:textColor="@color/gray"
         app:layout_constraintStart_toStartOf="@+id/titleTextView"
@@ -52,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="0원"
+        android:text="@string/price_format"
         android:textColor="@color/black"
         android:textSize="19sp"
         android:textStyle="bold"
@@ -75,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="0"
+        android:text="@string/temporary_count"
         android:textColor="@color/gray"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/like_image_view"
@@ -90,7 +96,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/like_text_view"
         app:layout_constraintEnd_toStartOf="@+id/like_text_view"
         app:layout_constraintTop_toTopOf="@+id/like_text_view"
-        app:srcCompat="@drawable/heart"
+        app:srcCompat="@drawable/empty_like"
         app:tint="@color/gray" />
 
     <TextView
@@ -100,7 +106,7 @@
         android:layout_marginTop="108dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="0"
+        android:text="@string/temporary_count"
         android:textColor="@color/gray"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
