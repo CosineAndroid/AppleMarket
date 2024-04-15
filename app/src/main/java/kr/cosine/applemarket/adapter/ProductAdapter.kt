@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kr.cosine.applemarket.R
 import kr.cosine.applemarket.data.Product
 import kr.cosine.applemarket.databinding.ItemProductBinding
 import kr.cosine.applemarket.extension.applyComma
@@ -13,7 +12,7 @@ import kr.cosine.applemarket.holder.ProductViewHolder
 
 class ProductAdapter(
     private val products: List<Product>,
-    private val clickScope: (Product) -> Unit
+    private val clickScope: (Int, Product) -> Unit
 ) : RecyclerView.Adapter<ProductViewHolder>() {
 
     private lateinit var parrentContext: Context
@@ -32,9 +31,10 @@ class ProductAdapter(
         addressTextView.text = product.address
         priceTextView.text = parrentContext.getFormattedPrice(product.price)
         chatTextView.text = product.chatCount.applyComma()
-        likeTextView.text = product.likeCount.applyComma() // 하트 빨간색
+        likeImageView.setImageResource(product.likeDrawableId)
+        likeTextView.text = product.totalLikeCount.applyComma()
         holder.itemView.setOnClickListener {
-            clickScope(product)
+            clickScope(position, product)
         }
     }
 

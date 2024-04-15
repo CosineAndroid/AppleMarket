@@ -6,7 +6,6 @@ import android.content.Intent
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Bundle
-import android.util.Log
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
-    private val productRegistry by lazy { ProductRegistry.getInstance() }
+    private val productRegistry = ProductRegistry.getInstance()
 
     private val backPressedCallback by lazy {
         object : OnBackPressedCallback(true) {
@@ -44,6 +43,8 @@ class MainActivity : AppCompatActivity() {
         getSystemService(NOTIFICATION_SERVICE) as NotificationManager
     }
 
+    private var openedProductPosition = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -53,6 +54,14 @@ class MainActivity : AppCompatActivity() {
         initNotificationChannel()
         initNoticiationButton()
         initRecyclerView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (openedProductPosition != -1) {
+            binding.productRecyclerView.adapter?.notifyItemChanged(openedProductPosition)
+            openedProductPosition = -1
+        }
     }
 
     private fun initBackPressedCallback() {
@@ -88,9 +97,10 @@ class MainActivity : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this@MainActivity)
     }
 
-    private fun startProductActivity(product: Product) {
+    private fun startProductActivity(position: Int, product: Product) {
+        openedProductPosition = position
         val intent = Intent(this, ProductActivity::class.java)
-        intent.putExtra(IntentKey.PRODUCT, product)
+        intent.putExtra(IntentKey.PRODUCT_ID, product.id)
         startActivity(intent)
     }
 
