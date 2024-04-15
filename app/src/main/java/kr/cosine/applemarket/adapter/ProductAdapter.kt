@@ -11,8 +11,9 @@ import kr.cosine.applemarket.extension.getFormattedPrice
 import kr.cosine.applemarket.holder.ProductViewHolder
 
 class ProductAdapter(
-    private val products: List<Product>,
-    private val clickScope: (Int, Product) -> Unit
+    private val products: MutableList<Product>,
+    private val clickScope: (Int, Product) -> Unit,
+    private val longClickScope: (Int, Product) -> Unit
 ) : RecyclerView.Adapter<ProductViewHolder>() {
 
     private lateinit var parrentContext: Context
@@ -26,6 +27,15 @@ class ProductAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) = with(holder) {
         val product = products[position]
+        holder.itemView.apply {
+            setOnClickListener {
+                clickScope(holder.adapterPosition, product)
+            }
+            setOnLongClickListener {
+                longClickScope(holder.adapterPosition, product)
+                return@setOnLongClickListener true
+            }
+        }
         previewImageView.setImageResource(product.imageDrawableId)
         titleTextView.text = product.title
         addressTextView.text = product.address
@@ -33,12 +43,15 @@ class ProductAdapter(
         chatTextView.text = product.chatCount.applyComma()
         likeImageView.setImageResource(product.likeDrawableId)
         likeTextView.text = product.totalLikeCount.applyComma()
-        holder.itemView.setOnClickListener {
-            clickScope(position, product)
-        }
     }
 
     override fun getItemId(position: Int): Long = position.toLong()
 
     override fun getItemCount(): Int = products.size
+
+    fun deleteProduct(position: Int, product: Product) {
+        products.remove(product)
+        notifyItemRemoved(position)
+        notifyItemChanged(position)
+    }
 }

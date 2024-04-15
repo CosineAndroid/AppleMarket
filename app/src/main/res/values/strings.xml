@@ -6,6 +6,8 @@
     <string name="exit_description">정말 종료하시겠습니까?</string>
     <string name="exit_cancel">취소</string>
     <string name="exit_confirm">확인</string>
+    <string name="product_delete_title">상품 삭제</string>
+    <string name="product_delete_description">상품을 정말로 삭제하시겠습니까?</string>
     <string name="notification_title">키워드 알림</string>
     <string name="notification_description">설정한 키워드에 대한 알림이 도착했습니다!!</string>
     <string name="manner_temperature">40.0 ℃</string>
