@@ -35,6 +35,10 @@ class ProductActivity : AppCompatActivity() {
         priceTextView.text = getFormattedPrice(product.price)
     }
 
+    fun onBackspaceClick(view: View) {
+        finish()
+    }
+
     fun switchLike(view: View) {
         val newLiked = !product.isLiked
         product.isLiked = newLiked

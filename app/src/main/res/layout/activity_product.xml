@@ -196,4 +196,16 @@
         app:layout_constraintHorizontal_bias="0.926"
         app:layout_constraintStart_toEndOf="@+id/priceTextView"
         app:layout_constraintTop_toTopOf="@+id/priceTextView" />
+
+    <ImageButton
+        android:id="@+id/backspaceImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:onClick="onBackspaceClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/left_arrow" />
 </androidx.constraintlayout.widget.ConstraintLayout>
